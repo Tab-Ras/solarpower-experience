@@ -82,16 +82,19 @@ const BenifitsSection = () => {
         });
 
         // Bakgrunds-fade på sektionen (gäller alla skärmar)
-        gsap.to(sectionRef.current, {
-          backgroundColor: "#141414",
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            end: "top 20%",
-            scrub: true,
+        gsap.fromTo(sectionRef.current, 
+          { backgroundColor: "#fafafa" },
+          {
+            backgroundColor: "#141414",
+            ease: "none",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+              end: "top 20%",
+              scrub: true,
+            }
           },
-        });
+        );
 
         // 🧠 Sticky-vänsterpanel BARA på desktop (lg: min-width: 1024px)
         ScrollTrigger.matchMedia({
@@ -124,7 +127,7 @@ const BenifitsSection = () => {
     <section
       id="fordelar"
       ref={sectionRef}
-      className="bg-[#fafafa] px-4 md:px-12 lg:px-12 max-w-full py-12 md:py-28 lg:py-32"
+      className="relative px-4 md:px-12 lg:px-12 max-w-full py-12 md:py-28 lg:py-32"
     >
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-20 w-full">
         {/* Vänster – sticky panel */}
