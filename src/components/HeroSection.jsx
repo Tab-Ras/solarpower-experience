@@ -84,7 +84,7 @@ const HeroSection = () => {
 
       {/* Text + CTA */}
       <div className="hero-cta absolute bottom-20 left-10 z-20 text-left text-[#fafafa] max-w-lg">
-        <p className="hero-subtext text-lg md:text-xl mb-6 drop-shadow-md">
+        <p className="hero-subtext text-sm md:text-xl mb-6 drop-shadow-md px-4">
           Att investera i solceller till ditt hem är enklare än du tror. Vi guidar dig hela vägen – från första kontakt till färdig installation. Med smart teknik, lång erfarenhet och full support gör vi det tryggt och lönsamt att producera din egen el. En hållbar framtid börjar hemma.
         </p>
         <div className="pt-2">

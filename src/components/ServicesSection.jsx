@@ -76,15 +76,14 @@ useGSAP(
         if (textParallax) {
           gsap.fromTo(
             textParallax,
-            { y: 60, skewY: index % 2 === 0 ? 2 : -2 },
+            { y: 40 },
             {
-              y: -60,
-              skewY: 0,
+              y: -40,
               ease: "none",
               scrollTrigger: {
                 trigger: block,
-                start: "top 50%",
-                end: "bottom 90%",
+                start: "top 40%",
+                end: "bottom 70%",
                 scrub: true,
               },
             }
