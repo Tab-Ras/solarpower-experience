@@ -61,7 +61,7 @@ const Home = () => {
       {/* CTA-sectionen med scroll-effekter */}
       <section
         ref={ctaSectionRef}
-        className="h-[200vh] bg-[#141414] px-6 flex flex-col justify-center items-center"
+        className="h-[200vh] bg-[#141414] px-6 flex flex-col justify-center items-center z-100"
         >
         <div ref={ctaTextRef} className="mix-blend-difference text-center">
           <span className="text-md tracking-wide uppercase text-[#fafafa] mb-6 block">
