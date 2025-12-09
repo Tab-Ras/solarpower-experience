@@ -53,7 +53,6 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <LandingReveal />
       <HeroSection />
       <AboutSection />
       <ServicesSection />
@@ -80,6 +79,7 @@ const Home = () => {
       <ReferencesSection />
       <ContactSection />
       <Footer />
+      <LandingReveal />
     </>
   );
 };

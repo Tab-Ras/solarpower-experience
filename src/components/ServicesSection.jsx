@@ -1,14 +1,15 @@
 import { useRef } from "react";
 import { FaSolarPanel, FaBatteryFull } from "react-icons/fa";
 import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
+import { HiArrowNarrowRight } from "react-icons/hi";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-import serviceSolar from "../assets/service-solar.jpg";
-import serviceBattery from "../assets/service-battery.jpg";
-import serviceConsult from "../assets/service-consult.jpg";
+import serviceSolar from "../assets/service-solar.webp";
+import serviceBattery from "../assets/service-battery.webp";
+import serviceConsult from "../assets/service-consult.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -169,6 +170,60 @@ useGSAP(
                     >
                       {item.desc}
                     </p>
+                    <div className="pt-2">
+                      <button
+                        onClick={() => {
+                          if (window.lenis) {
+                            window.lenis.scrollTo('#kontakt', {
+                              duration: 1.2,
+                              easing: (t) => 1 - Math.pow(1 - t, 3), // cubic ease-out
+                            })
+                          } else {
+                            // fallback om Lenis inte är redo
+                            document.getElementById("kontakt")?.scrollIntoView({ 
+                              behavior: "smooth", 
+                              block: "start" 
+                            })
+                          }
+                        }}
+                        className="
+                          group relative inline-flex items-center overflow-hidden 
+                          rounded-full bg-emerald-500 text-white 
+                          text-xs md:text-sm tracking-[0.25em] uppercase 
+                          px-8 py-3 transition-all duration-500 cursor-pointer
+                        "
+                      >
+                        {/* Hover background wipe */}
+                        <span
+                          className="
+                            absolute inset-0 -z-10 scale-x-0 origin-left bg-black 
+                            transition-transform duration-500 ease-out group-hover:scale-x-100
+                          "
+                        />
+            
+                        {/* Text */}
+                        <span
+                          className="
+                            transition-transform duration-500 
+                            group-hover:-translate-x-1
+                          "
+                        >
+                          Kontakta oss
+                        </span>
+            
+                        {/* Icon bubble */}
+                        <span
+                          className="
+                            flex h-7 w-7 items-center justify-center rounded-full 
+                            bg-white text-gray-900 ml-3
+                            transition-transform duration-500
+                            group-hover:translate-x-1 group-hover:rotate-45
+                          "
+                        >
+                          <HiArrowNarrowRight className="text-base" />
+                        </span>
+                      </button>
+                    </div>
                   </div>
                 </div>
 

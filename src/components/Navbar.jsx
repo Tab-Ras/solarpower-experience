@@ -134,8 +134,13 @@ const Navbar = () => {
         </div>
       </header>
 
-      {/* MOBILE OVERLAY MENU */}
-      <div className="fixed inset-0 z-40">
+      {/* MOBILE OVERLAY MENU – alltid i DOM */}
+      <div
+        className={`
+          fixed inset-0 z-40
+          ${isOpen ? "pointer-events-auto" : "pointer-events-none"}
+        `}
+      >
         <div
           className={`
             menu-clip

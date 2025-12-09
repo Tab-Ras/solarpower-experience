@@ -179,6 +179,7 @@ const ReferencesSection = () => {
 
             <div className="flex items-center gap-4">
               <button
+                aria-label="Föregående slide"
                 onClick={handlePrev}
                 className="p-2 rounded-full border border-gray-300 hover:bg-emerald-600 transition-colors cursor-pointer"
               >
@@ -186,6 +187,7 @@ const ReferencesSection = () => {
               </button>
 
               <button
+                aria-label="Nästa slide"
                 onClick={handleNext}
                 className="p-2 rounded-full border border-gray-300 hover:bg-emerald-600 transition-colors cursor-pointer"
               >

@@ -212,6 +212,7 @@ const SavingsCalculatorSection = () => {
                 value={annualUsage}
                 onChange={(e) => setAnnualUsage(Number(e.target.value))}
                 className="w-full accent-emerald-500 cursor-pointer"
+                aria-label="Årlig Elförbrukning"
               />
 
               <div className="flex justify-between text-xs text-gray-500">
@@ -244,6 +245,7 @@ const SavingsCalculatorSection = () => {
                 value={electricityPrice}
                 onChange={(e) => setElectricityPrice(Number(e.target.value))}
                 className="w-full accent-emerald-500 cursor-pointer"
+                aria-label="Elpris"
               />
 
               <div className="flex justify-between text-xs text-gray-500">
@@ -280,6 +282,7 @@ const SavingsCalculatorSection = () => {
                 value={roofFactor}
                 onChange={(e) => setRoofFactor(Number(e.target.value))}
                 className="w-full accent-emerald-500 cursor-pointer"
+                aria-label="Takets solförutsättningar"
               />
 
               <div className="flex justify-between text-xs text-gray-500">
