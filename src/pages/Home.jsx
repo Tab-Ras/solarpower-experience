@@ -26,29 +26,34 @@ const Home = () => {
       const text = ctaTextRef.current;
       if (!section || !text) return;
 
-      // 🔥 Bakgrund fade: #141414 -> #fafafa
-      gsap.to(section, {
-        backgroundColor: "#fafafa",
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "center center+=200",   // börja faden ungefär när sektionen är mitt i viewport
-          end: "bottom bottom",  // klar när botten närmar sig botten av viewport
-          scrub: true,           // koppla animationen till scroll (smooth)
-        },
-      });
+      // 🔥 Bakgrund fade: #141414 -> #fafafa (tvinga startvärde)
+      gsap.fromTo(
+        section,
+        { backgroundColor: "#141414" },   // start – sätts inline
+        {
+          backgroundColor: "#fafafa",     // slut
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "center center+=200",
+            end: "bottom bottom",
+            scrub: true,
+          },
+        }
+      );
 
-      // 📌 Pin / "fastna i mitten" på texten
+      // 📌 Pin på texten
       ScrollTrigger.create({
         trigger: section,
-        start: "center center",  // när mitten av sektionen når mitten av viewport
-        end: "bottom bottom",    // hur länge texten sitter fast
-        pin: text,               // pinna själva textblocket
-        pinSpacing: false,       // lägg inte extra space efter
+        start: "center center",
+        end: "bottom bottom",
+        pin: text,
+        pinSpacing: false,
       });
     },
     { scope: ctaSectionRef }
   );
+
 
   return (
     <>
@@ -61,8 +66,8 @@ const Home = () => {
       {/* CTA-sectionen med scroll-effekter */}
       <section
         ref={ctaSectionRef}
-        className="h-[200vh] bg-[#141414] px-6 flex flex-col justify-center items-center z-100"
-        >
+        className="relative h-[200vh] px-6 flex flex-col justify-center items-center"
+      >
         <div ref={ctaTextRef} className="mix-blend-difference text-center">
           <span className="text-md tracking-wide uppercase text-[#fafafa] mb-6 block">
             Låt oss
@@ -74,7 +79,6 @@ const Home = () => {
           </h2>
         </div>
       </section>
-
       <SavingsCalculatorSection />
       <ReferencesSection />
       <ContactSection />
