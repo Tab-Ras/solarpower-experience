@@ -52,7 +52,7 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen w-full"
+      className="relative h-screen w-full bg-[#fafafa]"
     >
       {/* Bakgrundsbild i fixed position */}
       <div
