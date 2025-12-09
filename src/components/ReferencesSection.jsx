@@ -111,7 +111,7 @@ const ReferencesSection = () => {
   return (
     <section
       id="referenser"
-      className="py-28 bg-[#141414] px-4 md:px-12 lg:px-12 max-w-full min-h-screen"
+      className="bg-[#141414] px-4 md:px-12 lg:px-12 py-12 md:py-28 lg:py-32 max-w-full min-h-screen"
     >
       <div ref={sectionRef} className="w-full">
 

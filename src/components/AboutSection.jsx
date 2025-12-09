@@ -73,7 +73,7 @@ const AboutSection = () => {
     <section
       id="om-oss"
       ref={sectionRef}
-      className="py-28 bg-[#fafafa] px-4 md:px-12 lg:px-24 xl:px-12"
+      className="bg-[#fafafa] px-4 md:px-12 lg:px-24 xl:px-12 py-12 md:py-28 lg:py-32"
     >
       <div className="max-w-full">
         <h2 className="about-kicker text-1xl font-bold text-emerald-600 leading-tight mb-16 uppercase">

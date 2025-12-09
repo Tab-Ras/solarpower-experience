@@ -82,8 +82,8 @@ useGSAP(
               ease: "none",
               scrollTrigger: {
                 trigger: block,
-                start: "top 60%",
-                end: "bottom 80%",
+                start: "top 50%",
+                end: "bottom 90%",
                 scrub: true,
               },
             }
@@ -122,7 +122,7 @@ useGSAP(
     <section
       id="tjanster"
       ref={sectionRef}
-      className="py-40 bg-[#fafafa] px-4 md:px-12 lg:px-12"
+      className="bg-[#fafafa] px-4 md:px-12 lg:px-12 py-12 md:py-28 lg:py-32"
     >
       <div className="max-w-full ">
         <h2 className="text-sm font-bold tracking-[0.2em] text-emerald-600 mb-24 uppercase">
@@ -174,11 +174,11 @@ useGSAP(
 
                 {/* BILD */}
                 <div
-                  className={`service-image relative md:h-[600px] min-h-screen ${
+                  className={`service-image relative h-72 sm:h-80 md:h-[600px] ${
                     reverse ? "md:order-1" : "md:order-2"
                   }`}
                 >
-                  <div className="service-image-inner w-full h-screen overflow-hidden">
+                  <div className="service-image-inner w-full h-full overflow-hidden">
                     {/* Clip-path wrapper – står still */}
                     <div className="w-full h-full overflow-hidden [clip-path:polygon(90%_0,100%_15%,100%_90%,75%_90%,52%_100%,0_100%,0_55%,10%_35%,10%_0)] relative">
                       {/* Detta lager rör sig med GSAP */}

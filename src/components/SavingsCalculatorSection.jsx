@@ -149,7 +149,7 @@ const SavingsCalculatorSection = () => {
     <section
       ref={sectionRef}
       id="rakna"
-      className="py-32 bg-[#fafafa] px-4 md:px-12 lg:px-12 max-w-full"
+      className="bg-[#fafafa] px-4 md:px-12 lg:px-12 py-12 md:py-28 lg:py-32 max-w-full"
     >
       <div className="calc-section-inner w-full">
         {/* HEADER */}

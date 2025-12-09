@@ -52,7 +52,7 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen w-full overflow-hidden"
+      className="relative h-screen w-full"
     >
       {/* Bakgrundsbild i fixed position */}
       <div
@@ -63,7 +63,7 @@ const HeroSection = () => {
       {/* Vit panel */}
       <div
         ref={panelRef}
-        className="relative z-10 h-[60vh] w-full flex flex-col justify-center items-center text-center bg-[#fafafa] px-6"
+        className="hero-heading relative z-10 h-[60vh] w-full flex flex-col justify-center items-center text-center bg-[#fafafa] px-6"
       >
         <h1
           className="text-[23vw] font-black uppercase leading-none tracking-[-0.12em]"
@@ -83,8 +83,8 @@ const HeroSection = () => {
       </div>
 
       {/* Text + CTA */}
-      <div className="absolute bottom-20 left-10 z-20 text-left text-[#fafafa] max-w-lg">
-        <p className="text-lg md:text-xl mb-6 drop-shadow-md">
+      <div className="hero-cta absolute bottom-20 left-10 z-20 text-left text-[#fafafa] max-w-lg">
+        <p className="hero-subtext text-lg md:text-xl mb-6 drop-shadow-md">
           Att investera i solceller till ditt hem är enklare än du tror. Vi guidar dig hela vägen – från första kontakt till färdig installation. Med smart teknik, lång erfarenhet och full support gör vi det tryggt och lönsamt att producera din egen el. En hållbar framtid börjar hemma.
         </p>
         <div className="pt-2">

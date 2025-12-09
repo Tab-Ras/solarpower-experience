@@ -22,6 +22,29 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const html = document.documentElement;
+
+    if (isOpen) {
+      // lås scroll (för icke-lenis browsers)
+      html.style.overflow = "hidden";
+
+      // stoppa lenis
+      if (window.lenis) window.lenis.stop();
+    } else {
+      // återställ scroll
+      html.style.overflow = "";
+
+      // starta lenis igen
+      if (window.lenis) window.lenis.start();
+    }
+
+    return () => {
+      html.style.overflow = "";
+      if (window.lenis) window.lenis.start();
+    };
+  }, [isOpen]);
+
   const handleNavClick = (e, id) => {
     e.preventDefault();
     const el = document.getElementById(id);
@@ -39,7 +62,7 @@ const Navbar = () => {
           isScrolled
             ? "backdrop-blur-md bg-black/70 border-b border-white/10"
             : "bg-transparent"
-        }`}
+        } ${isOpen ? "hidden" : " "} `}
       >
         <div className="flex items-center justify-between px-4 md:px-12 lg:px-12 py-4">
           {/* LOGO / BRAND */}
@@ -69,7 +92,7 @@ const Navbar = () => {
 
           {/* DESKTOP NAV */}
           <nav
-            className={`hidden md:flex items-center gap-10 text-[0.8rem] tracking-[0.25em] transition-colors duration-500 
+            className={`hidden lg:flex items-center gap-10 text-[0.8rem] tracking-[0.25em] transition-colors duration-500 
                 ${isScrolled ? "text-white" : "text-black"}
                 `}
             >
@@ -99,60 +122,67 @@ const Navbar = () => {
 
           {/* MOBILE MENU TOGGLE */}
           <button
-            className="md:hidden text-white text-2xl"
+            className={`
+              lg:hidden text-2xl transition-colors duration-300
+              ${isScrolled ? "text-white" : "text-black"}
+            `}
             onClick={() => setIsOpen((prev) => !prev)}
             aria-label="Öppna meny"
           >
-            {isOpen ? <HiX /> : <HiMenuAlt3 />}
+            <HiMenuAlt3 />
           </button>
         </div>
       </header>
 
       {/* MOBILE OVERLAY MENU */}
-      <div
-        className={`fixed inset-0 z-40 bg-black text-white transition-opacity duration-500 ${
-          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
-      >
-        <div className="flex flex-col h-full px-4 md:px-12 lg:px-12 py-6">
-          {/* Top row (logo + close) */}
-          <div className="flex items-center justify-between mb-10">
-            <div className="flex items-center gap-3">
-              <div className="h-8 w-8 rounded-full bg-emerald-500" />
-              <div className="flex flex-col leading-tight">
-                <span className="text-xs tracking-[0.25em] uppercase text-gray-300">
-                  Solenergi
-                </span>
+      <div className="fixed inset-0 z-40">
+        <div
+          className={`
+            menu-clip
+            bg-black text-white fixed inset-0
+            ${isOpen ? "menu-clip-open" : ""}
+          `}
+        >
+          <div className="flex flex-col h-full px-4 md:px-12 lg:px-12 py-4">
+            {/* Top row (logo + close) */}
+            <div className="flex items-center justify-between mb-10">
+              <div className="flex items-center gap-3">
+                <div className="h-8 w-8 rounded-full bg-emerald-500" />
+                <div className="flex flex-col leading-tight">
+                  <span className="text-xs tracking-[0.25em] uppercase text-gray-300">
+                    Solenergi
+                  </span>
+                </div>
               </div>
-            </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-2xl"
-              aria-label="Stäng meny"
-            >
-              <HiX />
-            </button>
-          </div>
-
-          {/* Links */}
-          <div className="flex-1 flex flex-col justify-center gap-6">
-            {sections.map((item) => (
               <button
-                key={item.id}
-                onClick={(e) => handleNavClick(e, item.id)}
-                className="text-3xl md:text-4xl font-semibold text-left group"
+                onClick={() => setIsOpen(false)}
+                className="text-2xl"
+                aria-label="Stäng meny"
               >
-                <span className="block group-hover:text-emerald-400 transition-colors duration-300">
-                  {item.label}
-                </span>
+                <HiX />
               </button>
-            ))}
-          </div>
+            </div>
 
-          {/* Bottom small info */}
-          <div className="text-xs text-gray-400 flex justify-between items-center pb-4">
-            <span>© {new Date().getFullYear()} Solenergi AB</span>
-            <span className="tracking-[0.25em] uppercase">Meny</span>
+            {/* Links */}
+            <div className="flex-1 flex flex-col justify-center gap-6">
+              {sections.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={(e) => handleNavClick(e, item.id)}
+                  className="text-3xl md:text-4xl font-semibold text-left group"
+                >
+                  <span className="block group-hover:text-emerald-400 transition-colors duration-300">
+                    {item.label}
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            {/* Bottom small info */}
+            <div className="text-xs text-gray-400 flex justify-between items-center pb-4">
+              <span>© {new Date().getFullYear()} Solenergi AB</span>
+              <span className="tracking-[0.25em] uppercase">Meny</span>
+            </div>
           </div>
         </div>
       </div>

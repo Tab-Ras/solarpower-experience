@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 import Navbar from "../components/Navbar";
+import LandingReveal from "../components/LandingReveal";
 import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
 import ServicesSection from "../components/ServicesSection";
@@ -52,6 +53,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
+      <LandingReveal />
       <HeroSection />
       <AboutSection />
       <ServicesSection />
@@ -60,8 +62,8 @@ const Home = () => {
       {/* CTA-sectionen med scroll-effekter */}
       <section
         ref={ctaSectionRef}
-        className="relative h-[200vh] bg-[#141414] px-6 flex flex-col justify-center items-center"
-      >
+        className="h-[200vh] bg-[#141414] px-6 flex flex-col justify-center items-center"
+        >
         <div ref={ctaTextRef} className="mix-blend-difference text-center">
           <span className="text-md tracking-wide uppercase text-[#fafafa] mb-6 block">
             Låt oss
