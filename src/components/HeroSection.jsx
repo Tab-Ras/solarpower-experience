@@ -85,8 +85,8 @@ const HeroSection = () => {
       </div>
 
       {/* Text + CTA */}
-      <div className="hero-cta absolute bottom-40 md:bottom-20 md:left-10 z-20 text-left text-[#fafafa] max-w-lg px-4">
-        <p className="hero-subtext text-sm md:text-xl mb-6 drop-shadow-md">
+      <div className="hero-cta absolute bottom-20 md:bottom-20 md:left-10 z-20 text-left text-[#fafafa] max-w-lg px-4">
+        <p className="hero-subtext text-md md:text-xl mb-6 drop-shadow-md">
           Vi utför montage av skyltar och folie åt skyltproducenter och byråer. Med erfarenhet, noggrannhet och full kontroll i varje steg säkerställer vi att slutresultatet blir exakt som tänkt – på plats, i rätt tid.
         </p>
         <div className="pt-2">
