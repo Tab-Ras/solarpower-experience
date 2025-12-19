@@ -143,13 +143,13 @@ const BenifitsSection = () => {
             <button
               onClick={() => {
                 if (window.lenis) {
-                  window.lenis.scrollTo('#kontakt', {
+                  window.lenis.scrollTo('#offert', {
                     duration: 1.2,
                     easing: (t) => 1 - Math.pow(1 - t, 3), // cubic ease-out
                   })
                 } else {
                   // fallback om Lenis inte är redo
-                  document.getElementById("kontakt")?.scrollIntoView({ 
+                  document.getElementById("offert")?.scrollIntoView({ 
                     behavior: "smooth", 
                     block: "start" 
                   })
