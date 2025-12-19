@@ -184,9 +184,18 @@ const ServicesSection = () => {
                     <div className="pt-2">
                       <button
                         onClick={() => {
-                          document
-                            .getElementById("kontakt")
-                            ?.scrollIntoView({ behavior: "smooth" });
+                          if (window.lenis) {
+                            window.lenis.scrollTo('#offert', {
+                              duration: 1.2,
+                              easing: (t) => 1 - Math.pow(1 - t, 3), // cubic ease-out
+                            })
+                          } else {
+                            // fallback om Lenis inte är redo
+                            document.getElementById("kontakt")?.scrollIntoView({ 
+                              behavior: "smooth", 
+                              block: "start" 
+                            })
+                          }
                         }}
                         className="
                           group relative inline-flex items-center overflow-hidden 

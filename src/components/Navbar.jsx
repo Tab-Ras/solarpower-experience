@@ -5,7 +5,7 @@ const sections = [
   { id: "om-oss", label: "Om oss" },
   { id: "tjanster", label: "Tjänster" },
   { id: "fordelar", label: "Arbetssätt" },
-  { id: "rakna", label: "Begär offert" },
+  { id: "offert", label: "Begär offert" },
   // { id: "referenser", label: "Projekt" },
   // { id: "footer", label: "Kontakt" },
 ];
@@ -157,7 +157,7 @@ const Navbar = () => {
                   <span className="text-xs tracking-[0.25em] uppercase text-gray-300">
                     Centrerat
                   </span>
-                  <span className="text-sm text-gray-100">Montage
+                  <span className="text-sm text-gray-100">Montage Östgöta AB
                   </span>
                 </div>
               </div>
@@ -187,7 +187,7 @@ const Navbar = () => {
 
             {/* Bottom small info */}
             <div className="text-xs text-gray-400 flex justify-between items-center pb-4">
-              <span>© {new Date().getFullYear()} Centrerat Montage</span>
+              <span>© {new Date().getFullYear()} Centrerat Montage Östgöta AB</span>
               <span className="tracking-[0.25em] uppercase">Meny</span>
             </div>
           </div>

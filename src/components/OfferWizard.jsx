@@ -47,7 +47,7 @@ const OfferWizard = () => {
 
   return (
     <section
-      id="rakna"
+      id="offert"
       className="relative py-40 bg-[#141414] text-[#fafafa] px-4 md:px-12 lg:px-12"
     >
         {isSubmitted ? (
