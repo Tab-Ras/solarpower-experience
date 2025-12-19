@@ -67,7 +67,7 @@ const HeroSection = () => {
         className="hero-heading relative z-10 h-[50vh] w-full flex flex-col justify-center items-center text-center bg-[#fafafa] px-6 lg:h-[60vh]"
       >
         <h1
-          className="text-[11vw] font-black uppercase leading-none -tracking-widest"
+          className="text-[18vw] md:text-[11vw] font-black uppercase leading-none -tracking-widest"
           style={{
             background: 'none',
             WebkitTextFillColor: 'transparent',
