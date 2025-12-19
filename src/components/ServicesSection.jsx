@@ -7,8 +7,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-import serviceSolar from "../assets/service-solar.webp";
-import serviceBattery from "../assets/service-battery.webp";
+import serviceMontage from "../assets/service-montage.webp";
+import serviceService from "../assets/service-service.webp";
 import serviceConsult from "../assets/service-consult.webp";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -19,104 +19,113 @@ const ServicesSection = () => {
   const services = [
     {
       icon: FaSolarPanel,
-      title: "Solcellsinstallation",
+      title: "Montage",
       desc: `
-        Våra certifierade installatörer säkerställer att dina solpaneler placeras optimalt
-        för maximal effekt året runt. Vi hanterar allt: projektering, montering, eldragning
-        och driftsättning. Målet är en lösning som är estetiskt tilltalande, energismart
-        och framtidssäkrad.
+        Vi utför professionellt montage av skyltar i alla typer av miljöer – fasad, butik,
+        inomhusmiljöer och offentliga platser. Varje uppdrag genomförs med fokus på korrekt
+        infästning, exakt linjering och ett slutresultat som håller över tid.
+        
+        Vi arbetar metodiskt enligt gällande krav och förutsättningar på plats, oavsett om
+        det gäller nyproduktion, omprofilering eller kompletterande montage.
       `,
-      image: serviceSolar,
+      image: serviceMontage,
     },
     {
       icon: FaBatteryFull,
-      title: "Batterilösningar",
+      title: "Service",
       desc: `
-        Med moderna energilager kan du spara överskottsel och använda den när elpriserna
-        är som högst – eller vid strömavbrott. Vi erbjuder batterier med lång livslängd,
-        hög säkerhet och smart styrning för dig som vill öka din självförsörjning.
+        Vi erbjuder löpande service, justering och demontering av befintlig skyltning.
+        Det kan handla om allt från mindre korrigeringar till större ombyggnationer
+        eller anpassningar i samband med förändrade behov.
+        
+        Med snabba inställelsetider och tydlig återkoppling fungerar vi som en pålitlig
+        servicepartner för skyltföretag som behöver en trygg lösning ute på fältet.
       `,
-      image: serviceBattery,
+      image: serviceService,
     },
     {
       icon: HiOutlineChatBubbleLeftRight,
-      title: "Rådgivning & Offert",
+      title: "Survey",
       desc: `
-        Är solceller rätt för dig? Vi tar fram en skräddarsydd energikalkyl baserat på
-        takets förutsättningar, din nuvarande förbrukning och framtida behov. Tydliga
-        svar, inga tomma löften – bara ärlig rådgivning.
+        Inför varje montage erbjuder vi noggranna platsbesök och förarbete.
+        Vi mäter, dokumenterar och bedömer underlag, infästningsmöjligheter och tekniska
+        förutsättningar för att säkerställa ett smidigt genomförande.
+        
+        Surveyarbetet ger ett tydligt beslutsunderlag och minskar risken för överraskningar
+        längre fram i processen – både för beställare och montör.
       `,
       image: serviceConsult,
     },
   ];
 
-useGSAP(
-  () => {
-    const ctx = gsap.context(() => {
-      const blocks = gsap.utils.toArray(".service-block");
+  useGSAP(
+    () => {
+      const ctx = gsap.context(() => {
+        const blocks = gsap.utils.toArray(".service-block");
 
-      blocks.forEach((block, index) => {
-        const textEl = block.querySelector(".service-text");
-        const textParallax = block.querySelector(".service-text-wrapper");
-        const parallaxEl = block.querySelector(".service-image-parallax");
+        blocks.forEach((block, index) => {
+          const textEl = block.querySelector(".service-text");
+          const textWrapper = block.querySelector(".service-text-wrapper");
 
-        const fromTextX = index % 2 === 0 ? -40 : 40;
+          const fromX = index % 2 === 0 ? -40 : 40;
 
-        // Text reveal
-        gsap.from(textEl, {
-          opacity: 0,
-          x: fromTextX,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: block,
-            start: "top 50%",
-          },
+          // Text reveal
+          gsap.from(textEl, {
+            opacity: 0,
+            x: fromX,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: block,
+              start: "top 55%",
+            },
+          });
+
+          // Text parallax
+          if (textWrapper) {
+            gsap.fromTo(
+              textWrapper,
+              { y: 40 },
+              {
+                y: -40,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: block,
+                  start: "top 40%",
+                  end: "bottom 70%",
+                  scrub: true,
+                },
+              }
+            );
+          }
+
+          const img = block.querySelector(".service-img");
+
+          if (img) {
+            gsap.fromTo(
+              img,
+              { scale: 1.12, opacity: 0.85 },
+              {
+                scale: 1,
+                opacity: 1,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: block,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: true,
+                },
+              }
+            );
+          }
+
         });
-        if (textParallax) {
-          gsap.fromTo(
-            textParallax,
-            { y: 40 },
-            {
-              y: -40,
-              ease: "none",
-              scrollTrigger: {
-                trigger: block,
-                start: "top 40%",
-                end: "bottom 70%",
-                scrub: true,
-              },
-            }
-          );
-        }
+      }, sectionRef);
 
-        // Parallax på bilden inuti clip-path
-        if (parallaxEl) {
-          gsap.fromTo(
-            parallaxEl,
-            { y: 60 },   // start lite ned
-            {
-              y: -60,    // sluta lite upp
-              ease: "none",
-              scrollTrigger: {
-                trigger: block,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true,
-                // markers: true, // slå på om du vill se triggrarna
-              },
-            }
-          );
-        }
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  },
-  { scope: sectionRef }
-);
-
-
+      return () => ctx.revert();
+    },
+    { scope: sectionRef }
+  );
 
   return (
     <section
@@ -124,7 +133,7 @@ useGSAP(
       ref={sectionRef}
       className="bg-[#fafafa] px-4 md:px-12 lg:px-12 py-12 md:py-28 lg:py-32"
     >
-      <div className="max-w-full ">
+      <div className="max-w-full">
         <h2 className="text-sm font-bold tracking-[0.2em] text-emerald-600 mb-24 uppercase">
           Vad vi erbjuder
         </h2>
@@ -140,10 +149,12 @@ useGSAP(
                 className="service-block grid grid-cols-1 md:grid-cols-2 gap-16 items-center min-h-[75vh]"
               >
                 {/* TEXT */}
-                <div className={`service-text-wrapper relative mx-auto ${reverse ? "md:order-2 md:text-right" : "md:order-1"}`}>
+                <div
+                  className={`service-text-wrapper relative mx-auto ${
+                    reverse ? "md:order-2 md:text-right" : "md:order-1"
+                  }`}
+                >
                   <div className="service-text space-y-6 will-change-transform">
-                  
-
                     <div className="inline-flex items-center gap-3 text-emerald-500 text-xs tracking-[0.2em] uppercase">
                       <span className="w-2 h-2 rounded-full bg-emerald-500" />
                       <span>Tjänst {index + 1}</span>
@@ -169,21 +180,13 @@ useGSAP(
                     >
                       {item.desc}
                     </p>
+
                     <div className="pt-2">
                       <button
                         onClick={() => {
-                          if (window.lenis) {
-                            window.lenis.scrollTo('#kontakt', {
-                              duration: 1.2,
-                              easing: (t) => 1 - Math.pow(1 - t, 3), // cubic ease-out
-                            })
-                          } else {
-                            // fallback om Lenis inte är redo
-                            document.getElementById("kontakt")?.scrollIntoView({ 
-                              behavior: "smooth", 
-                              block: "start" 
-                            })
-                          }
+                          document
+                            .getElementById("kontakt")
+                            ?.scrollIntoView({ behavior: "smooth" });
                         }}
                         className="
                           group relative inline-flex items-center overflow-hidden 
@@ -192,33 +195,13 @@ useGSAP(
                           px-8 py-3 transition-all duration-500 cursor-pointer
                         "
                       >
-                        {/* Hover background wipe */}
-                        <span
-                          className="
-                            absolute inset-0 -z-10 scale-x-0 origin-left bg-black 
-                            transition-transform duration-500 ease-out group-hover:scale-x-100
-                          "
-                        />
-            
-                        {/* Text */}
-                        <span
-                          className="
-                            transition-transform duration-500 
-                            group-hover:-translate-x-1
-                          "
-                        >
+                        <span className="absolute inset-0 -z-10 scale-x-0 origin-left bg-black transition-transform duration-500 group-hover:scale-x-100" />
+
+                        <span className="transition-transform duration-500 group-hover:-translate-x-1">
                           Kontakta oss
                         </span>
-            
-                        {/* Icon bubble */}
-                        <span
-                          className="
-                            flex h-7 w-7 items-center justify-center rounded-full 
-                            bg-white text-gray-900 ml-3
-                            transition-transform duration-500
-                            group-hover:translate-x-1 group-hover:rotate-45
-                          "
-                        >
+
+                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-gray-900 ml-3 transition-transform duration-500 group-hover:translate-x-1 group-hover:rotate-45">
                           <HiArrowNarrowRight className="text-base" />
                         </span>
                       </button>
@@ -226,23 +209,22 @@ useGSAP(
                   </div>
                 </div>
 
-                {/* BILD */}
+                {/* IMAGE */}
                 <div
-                  className={`service-image relative h-72 sm:h-80 md:h-[600px] ${
+                  className={`service-image relative ${
                     reverse ? "md:order-1" : "md:order-2"
                   }`}
                 >
-                  <div className="service-image-inner w-full h-full overflow-hidden">
-                    {/* Clip-path wrapper – står still */}
-                    <div className="w-full h-full overflow-hidden [clip-path:polygon(90%_0,100%_15%,100%_90%,75%_90%,52%_100%,0_100%,0_55%,10%_35%,10%_0)] relative">
-                      {/* Detta lager rör sig med GSAP */}
-                      <div className="service-image-parallax absolute inset-[-5%]">
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
+                  {/* Clip wrapper (stabil) */}
+                  <div className="service-image-clip relative w-full aspect-video md:aspect-3/4 lg:aspect-video rounded-2xl overflow-hidden isolate transform-gpu">
+                    {/* Parallax layer (större än clip-rutan) */}
+                    <div className="service-image-parallax absolute inset-0 will-change-transform">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="service-img w-full h-full object-cover will-change-transform"
+                        draggable="false"
+                      />
                     </div>
                   </div>
                 </div>
@@ -250,7 +232,6 @@ useGSAP(
             );
           })}
         </div>
-
       </div>
     </section>
   );

@@ -64,6 +64,7 @@ const Footer = () => {
   return (
     <footer
       ref={footerRef}
+      id="footer"
       className="bg-[#050505] text-[#f5f5f5] pt-20 pb-10 px-4 md:px-12 lg:px-12 max-w-full overflow-hidden"
     >
       {/* Top panel */}
@@ -74,18 +75,55 @@ const Footer = () => {
             <p className="text-xs tracking-[0.25em] uppercase text-gray-400">
               Kontakt
             </p>
-            <div className="space-y-2 text-sm md:text-base">
-              <p className="font-medium">kontakt@solenergi.se</p>
-              <p className="text-gray-300">+46 70 123 45 67</p>
-              <button className="mt-4 text-sm uppercase tracking-[0.18em] text-gray-200 hover:text-emerald-400 transition-colors">
-                Hör av dig →
+            <div className="space-y-2 text-sm md:text-base grid">
+              <a
+                href="mailto:info@centrerat.se?subject=Offertförfrågan"
+                className="
+                  font-medium text-gray-200
+                  hover:text-emerald-400
+                  transition-colors
+                "
+              >
+                info@centrerat.se
+              </a>
+              <a
+                href="tel:+46735375765"
+                className="
+                  text-gray-300
+                  hover:text-emerald-400
+                  transition-colors
+                "
+              >
+                +46 73 537 57 65
+              </a>
+              
+              <button 
+                onClick={() => {
+                  if (window.lenis) {
+                    window.lenis.scrollTo('#rakna', {
+                      duration: 1.2,
+                      easing: (t) => 1 - Math.pow(1 - t, 3),
+                    })
+                  } else {
+                    document
+                      .getElementById('rakna')
+                      ?.scrollIntoView({ behavior: 'smooth' })
+                  }
+                }}
+                className="
+                  mt-4 inline-flex items-center gap-2
+                  text-sm uppercase tracking-[0.18em]
+                  text-gray-200 hover:text-emerald-400
+                  transition-colors
+                "
+              >
+                Hör av dig
+                <span className="transition-transform group-hover:translate-x-1">→</span>
               </button>
             </div>
 
             <div className="space-y-1 text-xs text-gray-500 pt-4">
-              <p>Solenergi AB</p>
-              <p>Solvägen 12</p>
-              <p>123 45 Solstad</p>
+              <p>Centrerat Montage <br/> Östgöta AB</p>
             </div>
           </div>
 
@@ -118,56 +156,33 @@ const Footer = () => {
               </a>
             </div>
           </div>
-
-          {/* SUBSCRIBE */}
-          <div className="footer-column space-y-8">
-            <p className="text-xs tracking-[0.25em] uppercase text-gray-400">
-              Prenumerera
-            </p>
-
-            <p className="text-sm md:text-base text-gray-300 max-w-sm">
-              Få uppdateringar om nya projekt, teknik och tips kring solenergi –
-              direkt i din inkorg.
-            </p>
-
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="pt-2 max-w-sm"
-            >
-              <label
-                htmlFor="footer-email"
-                className="block text-xs uppercase tracking-[0.18em] text-gray-500 mb-2"
-              >
-                E-post
-              </label>
-              <div className="flex items-center border-b border-gray-500 pb-2">
-                <input
-                  id="footer-email"
-                  type="email"
-                  placeholder="du@exempel.se"
-                  className="flex-1 bg-transparent text-sm md:text-base text-[#f5f5f5] placeholder-gray-500 focus:outline-none"
-                />
-                <button
-                  type="submit"
-                  className="ml-3 text-lg hover:text-emerald-400 transition-colors"
-                  aria-label="Skicka"
-                >
-                  <HiArrowNarrowRight />
-                </button>
-              </div>
-            </form>
-          </div>
         </div>
       </div>
 
       {/* Big background word */}
-      <div className="footer-word mt-16 text-[23vw] leading-none font-black tracking-[-0.12em] text-emerald-600 text-center">
-        SOLENERGI
+      <div className="footer-word uppercase mt-16 text-[20vw] leading-none font-black -tracking-widest text-emerald-600 text-center select-none pointer-events-none">
+        Centrerat
       </div>
 
       {/* Copyright */}
-      <div className="mt-6 text-xs md:text-sm text-gray-500">
-        © {year} Solenergi AB. Alla rättigheter förbehållna.
+      <div className="mt-6 flex justify-between items-center">
+        <div className="text-xs md:text-sm text-gray-500">
+          © {year} Centrerat Montage Östgöta AB. Alla rättigheter reserverade.
+        </div>
+        <div>
+          <a
+            href="https://rt-webstudio.se"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+            text-xs md:text-sm text-gray-500 
+            transition-colors duration-300
+            hover:text-emerald-500
+            "
+            >
+            Design & utveckling av RT Web Studio
+          </a>
+        </div>
       </div>
     </footer>
   );

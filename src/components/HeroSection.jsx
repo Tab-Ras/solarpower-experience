@@ -52,6 +52,7 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
+      id='hero'
       className="relative h-screen w-full"
     >
       {/* Bakgrundsbild i fixed position */}
@@ -66,7 +67,7 @@ const HeroSection = () => {
         className="hero-heading relative z-10 h-[40vh] w-full flex flex-col justify-center items-center text-center bg-[#fafafa] px-6 lg:h-[60vh]"
       >
         <h1
-          className="text-[23vw] font-black uppercase leading-none tracking-[-0.12em]"
+          className="text-[11vw] font-black uppercase leading-none -tracking-widest"
           style={{
             background: 'none',
             WebkitTextFillColor: 'transparent',
@@ -78,20 +79,21 @@ const HeroSection = () => {
             backgroundPosition: 'center',
           }}
         >
-          Solenergi
+          Centrerat Montage
         </h1>
+        <h2 className="text-gray-800 uppercase text-[4vw] font-bold mt-4">Skyltmontage med <span className="text-emerald-500">precision</span>.</h2>
       </div>
 
       {/* Text + CTA */}
       <div className="hero-cta absolute bottom-40 md:bottom-20 md:left-10 z-20 text-left text-[#fafafa] max-w-lg px-4">
         <p className="hero-subtext text-sm md:text-xl mb-6 drop-shadow-md">
-          Att investera i solceller till ditt hem är enklare än du tror. Vi guidar dig hela vägen – från första kontakt till färdig installation. Med smart teknik, lång erfarenhet och full support gör vi det tryggt och lönsamt att producera din egen el. En hållbar framtid börjar hemma.
+          Vi utför montage av skyltar och folie åt skyltproducenter och byråer. Med erfarenhet, noggrannhet och full kontroll i varje steg säkerställer vi att slutresultatet blir exakt som tänkt – på plats, i rätt tid.
         </p>
         <div className="pt-2">
           <button
             onClick={() => {
               if (window.lenis) {
-                window.lenis.scrollTo('#kontakt', {
+                window.lenis.scrollTo('#rakna', {
                   duration: 1.2,
                   easing: (t) => 1 - Math.pow(1 - t, 3), // cubic ease-out
                 })
@@ -141,7 +143,6 @@ const HeroSection = () => {
             </span>
           </button>
         </div>
-
       </div>
     </section>
   );

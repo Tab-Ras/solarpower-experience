@@ -4,10 +4,10 @@ import { HiMenuAlt3, HiX } from "react-icons/hi";
 const sections = [
   { id: "om-oss", label: "Om oss" },
   { id: "tjanster", label: "Tjänster" },
-  { id: "fordelar", label: "Fördelar" },
-  { id: "rakna", label: "Kalkylator" },
-  { id: "referenser", label: "Projekt" },
-  { id: "kontakt", label: "Kontakt" },
+  { id: "fordelar", label: "Arbetssätt" },
+  { id: "rakna", label: "Begär offert" },
+  // { id: "referenser", label: "Projekt" },
+  // { id: "footer", label: "Kontakt" },
 ];
 
 const Navbar = () => {
@@ -76,7 +76,7 @@ const Navbar = () => {
                     ${isScrolled ? "text-gray-300" : "text-black"}
                     `}
                 >
-                    Solenergi
+                    Centrerat
                 </span>
 
                 <span
@@ -85,7 +85,7 @@ const Navbar = () => {
                     ${isScrolled ? "text-white" : "text-gray-700"}
                     `}
                 >
-                    Grön energi för hemmet
+                    Montage Östgöta AB
                 </span>
             </div>
           </div>
@@ -155,7 +155,9 @@ const Navbar = () => {
                 <div className="h-8 w-8 rounded-full bg-emerald-500" />
                 <div className="flex flex-col leading-tight">
                   <span className="text-xs tracking-[0.25em] uppercase text-gray-300">
-                    Solenergi
+                    Centrerat
+                  </span>
+                  <span className="text-sm text-gray-100">Montage
                   </span>
                 </div>
               </div>
@@ -185,7 +187,7 @@ const Navbar = () => {
 
             {/* Bottom small info */}
             <div className="text-xs text-gray-400 flex justify-between items-center pb-4">
-              <span>© {new Date().getFullYear()} Solenergi AB</span>
+              <span>© {new Date().getFullYear()} Centrerat Montage</span>
               <span className="tracking-[0.25em] uppercase">Meny</span>
             </div>
           </div>

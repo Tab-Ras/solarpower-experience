@@ -14,41 +14,38 @@ const BenifitsSection = () => {
   const benefits = [
     {
       label: "01",
-      title: "Lägre elkostnader",
+      title: "Precision i varje steg",
       desc: `
-        Genom att producera din egen el minskar du direkt mängden energi du behöver köpa från elbolaget.
-        Med solceller får du en mer förutsägbar månadskostnad och kan skydda dig mot framtida prisökningar.
-        Överskottet du inte använder själv kan dessutom säljas tillbaka till nätet – vilket gör din anläggning
-        till en aktiv tillgång istället för en passiv kostnad.
+        Varje montage börjar med noggranna mätningar och en tydlig plan.
+        Vi säkerställer korrekt placering, infästning och linjering för ett
+        slutresultat som håller över tid – både visuellt och tekniskt.
       `,
     },
     {
       label: "02",
-      title: "Ökat fastighetsvärde",
+      title: "Trygg montagepartner",
       desc: `
-        Ett hem med solceller upplevs som mer modernt, genomtänkt och kostnadseffektivt. För många köpare är
-        lägre driftkostnader och hållbar energiförsörjning ett starkt argument vid bostadsköp. En installerad
-        solcellsanläggning kan därför göra din villa mer attraktiv på marknaden och bidra till ett högre slutpris
-        den dag du väljer att sälja.
+        Vi har erfarenhet av montage i många olika miljöer – från stadskärnor
+        och köpcentrum till industriområden och fasader med särskilda krav.
+        Arbetet utförs alltid med fokus på säkerhet, kvalitet och ansvar.
       `,
     },
     {
       label: "03",
-      title: "Miljövänligt – på riktigt",
+      title: "Smidig kommunikation",
       desc: `
-        Solenergi är en av de renaste energikällorna vi har. Varje kilowattimme du själv producerar minskar behovet
-        av el från fossila bränslen och bidrar till lägre koldioxidutsläpp. För många av våra kunder handlar det inte
-        bara om ekonomi – utan om att ta ett konkret steg mot ett mer hållbart sätt att leva, här och nu.
+        Tydlig dialog är en självklar del av vårt arbetssätt.
+        Vi håller er uppdaterade genom hela processen och ser till att
+        förutsättningar, tider och utförande är tydliga från start till klart montage.
       `,
     },
     {
       label: "04",
-      title: "Stöd, bidrag & smart finansiering",
+      title: "Representerar ert varumärke",
       desc: `
-        Det finns flera möjligheter till ekonomiskt stöd när du investerar i solceller, till exempel grönt avdrag
-        för installation av solceller, batteri och laddbox. Vi hjälper dig att reda ut vad som gäller, vilka nivåer
-        du kan räkna med och hur du på bästa sätt kombinerar bidrag, eventuell finansiering och egen insats för att
-        få en lönsam helhet.
+        Vi arbetar som en naturlig förlängning av ert skylt- eller reklambolag.
+        Med ett professionellt bemötande på plats ser vi till att både utförande
+        och upplevelse speglar ert varumärke på bästa sätt.
       `,
     },
   ];
@@ -136,15 +133,16 @@ const BenifitsSection = () => {
           className="lg:col-span-1 space-y-6"
         >
           <p className="text-xs tracking-[0.25em] uppercase text-emerald-600">
-            Fördelar
+            Så arbetar Centrerat Montage
           </p>
           <h2 className="text-4xl md:text-5xl font-bold text-[#fafafa] leading-tight">
-            Varför solenergi
-            <span className="block text-emerald-500">gör skillnad.</span>
+            Ett genomtänkt montage
+            <span className="block text-emerald-500">gör hela skillnaden.</span>
           </h2>
+
           <p className="text-[#ebebeb] text-lg leading-relaxed max-w-xl">
-            Med solenergi skapar du en trygg, hållbar och kostnadseffektiv elförsörjning.
-            Det är en investering som påverkar både din ekonomi, ditt hem och vår gemensamma framtid.
+            Ett korrekt utfört montage är avgörande för både funktion, hållbarhet och uttryck.
+            Vårt arbetssätt säkerställer att skyltlösningen fungerar i verkligheten – inte bara på ritningen.
           </p>
           <div className="pt-2">
             <button

@@ -10,15 +10,13 @@ const ContactSection = () => {
         {/* Vänster – rubrik & intro */}
         <div className="space-y-6">
           <p className="text-xs tracking-[0.25em] uppercase text-emerald-600">
-            Kontakta oss
+            Begär offert
           </p>
           <h2 className="text-4xl md:text-6xl font-heading font-bold text-gray-900 leading-tight">
             Prata med oss.
           </h2>
           <p className="text-gray-700 text-lg leading-relaxed max-w-xl">
-            Vill du komma igång med solceller, har en fråga om ditt tak eller
-            vill bolla en idé? Skicka en rad så återkommer vi med
-            rekommendationer anpassade efter ditt hem och din elförbrukning.
+            Beskriv uppdraget så återkommer vi med förslag på upplägg och pris.
           </p>
         </div>
 

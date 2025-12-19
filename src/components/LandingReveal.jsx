@@ -48,11 +48,13 @@ const LandingReveal = () => {
       // -------------------------
       // 🟩 OVERLAY EXIT CLIP-PATH
       // -------------------------
+      .to(".reveal-inner", { opacity: 0, scale: 0.8, duration: 0.7 }, "+=0.3")
+
       .to(
         overlay,
         {
           clipPath: "inset(0% 10% 100% 10%)", // glider uppåt men med mask
-          duration: 1.2,
+          duration: 1,
           ease: "power4.inOut",
         }
       )
@@ -87,11 +89,11 @@ const LandingReveal = () => {
       >
         <div className="reveal-inner text-center space-y-4">
           <p className="reveal-kicker text-xs tracking-[0.3em] uppercase text-gray-400">
-            Solenergi AB
+            Centrerat Montage
           </p>
           <h1 className="reveal-title text-4xl md:text-6xl font-semibold leading-tight">
-            Grön energi
-            <span className="block text-emerald-400">för framtidens hem.</span>
+            Professionellt montage
+            <span className="block text-emerald-400">där detaljerna räknas.</span>
           </h1>
         </div>
       </div>
