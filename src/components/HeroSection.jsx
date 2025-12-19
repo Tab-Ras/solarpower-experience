@@ -64,7 +64,7 @@ const HeroSection = () => {
       {/* Vit panel */}
       <div
         ref={panelRef}
-        className="hero-heading relative z-10 h-[40vh] w-full flex flex-col justify-center items-center text-center bg-[#fafafa] px-6 lg:h-[60vh]"
+        className="hero-heading relative z-10 h-[50vh] w-full flex flex-col justify-center items-center text-center bg-[#fafafa] px-6 lg:h-[60vh]"
       >
         <h1
           className="text-[11vw] font-black uppercase leading-none -tracking-widest"
