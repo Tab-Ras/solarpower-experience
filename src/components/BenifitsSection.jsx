@@ -101,15 +101,10 @@ const BenifitsSection = () => {
             ScrollTrigger.create({
               trigger: sectionRef.current,
               start: "top top",
-              end: "bottom 60%",
+              end: "bottom 75%",
               pin: leftRef.current,
               pinSpacing: false,
             });
-          },
-
-          // (valfritt) på mobil gör vi ingenting med pin
-          "(max-width: 1023px)": () => {
-            // ingen pin här – vänster text scrollar normalt
           },
         });
       }, sectionRef);
