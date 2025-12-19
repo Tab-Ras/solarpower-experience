@@ -1,3 +1,7 @@
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
 import { useMemo, useState } from "react";
 import { HiArrowRight, HiArrowLeft } from "react-icons/hi";
 
@@ -17,6 +21,9 @@ const isEmail = (value) =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || "").trim());
 
 const OfferWizard = () => {
+  const stepWrapRef = useRef(null);
+  const successRef = useRef(null);
+
   const [step, setStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
@@ -24,6 +31,64 @@ const OfferWizard = () => {
   // Visar fel först när man försöker gå vidare / skicka
   const [touched, setTouched] = useState({});
   const [stepError, setStepError] = useState("");
+
+    useGSAP(() => {
+        if (!stepWrapRef.current) return;
+
+        const ctx = gsap.context(() => {
+            const el = stepWrapRef.current;
+
+            // container in
+            gsap.fromTo(
+            el,
+            { autoAlpha: 0, y: 24, scale: 0.985, filter: "blur(6px)" },
+            { autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.55, ease: "power3.out" }
+            );
+
+            // stagger children (inputs/buttons/etc)
+            const items = el.querySelectorAll(".wizard-item");
+            if (items.length) {
+            gsap.fromTo(
+                items,
+                { autoAlpha: 0, y: 12 },
+                { autoAlpha: 1, y: 0, duration: 0.45, ease: "power3.out", stagger: 0.06, delay: 0.08 }
+            );
+            }
+        }, stepWrapRef);
+
+        return () => ctx.revert();
+    }, [step]);
+
+    useEffect(() => {
+        if (!isSubmitted || !successRef.current) return;
+
+        const ctx = gsap.context(() => {
+            const el = successRef.current;
+
+            // Container in
+            gsap.fromTo(
+            el,
+            { autoAlpha: 0, y: 24, scale: 0.985, filter: "blur(8px)" },
+            { autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.7, ease: "power3.out" }
+            );
+
+            // Stagger items
+            gsap.fromTo(
+            el.querySelectorAll(".success-item"),
+            { autoAlpha: 0, y: 14 },
+            { autoAlpha: 1, y: 0, duration: 0.55, ease: "power3.out", stagger: 0.08, delay: 0.1 }
+            );
+
+            // Button micro-pop
+            gsap.fromTo(
+            el.querySelector(".success-btn"),
+            { scale: 0.96 },
+            { scale: 1, duration: 0.6, ease: "elastic.out(1, 0.6)", delay: 0.25 }
+            );
+        }, successRef);
+
+        return () => ctx.revert();
+    }, [isSubmitted]);
 
   const resetWizard = () => {
     setFormData(INITIAL_FORM_STATE);
@@ -148,42 +213,43 @@ const OfferWizard = () => {
   return (
     <section
       id="offert"
-      className="relative py-40 bg-[#141414] text-[#fafafa] px-4 md:px-12 lg:px-12"
+      className="relative min-h-svh py-40 bg-[#141414] text-[#fafafa] px-4 md:px-12 lg:px-12"
     >
       {isSubmitted ? (
         <div className="min-h-[60vh] flex items-center justify-center">
-          <div className="max-w-xl text-center space-y-6">
-            <span className="text-xs tracking-[0.3em] uppercase text-emerald-400">
-              Tack!
-            </span>
-
-            <h3 className="text-4xl md:text-5xl font-bold">
-              Din offertförfrågan
-              <span className="block text-emerald-500">är skickad.</span>
-            </h3>
-
-            <p className="text-[#ebebeb] text-lg leading-relaxed">
-              Vi har tagit emot din förfrågan och återkommer så snart som möjligt.
-              Har du kompletterande information är du alltid välkommen att kontakta oss.
-            </p>
-
-            <div className="pt-8 flex justify-center">
-              <button
-                onClick={resetWizard}
-                className="
-                  group relative inline-flex items-center gap-3 
-                  rounded-full border border-white/30 px-8 py-3
-                  uppercase text-xs tracking-[0.25em]
-                  transition-all duration-500 hover:border-emerald-500
-                "
-              >
-                <span>Skicka ny förfrågan</span>
-                <span className="group-hover:translate-x-1 transition-transform">
-                  →
+            <div ref={successRef} className="max-w-xl text-center space-y-6">
+                <span className="success-item text-xs tracking-[0.3em] uppercase text-emerald-400">
+                    Tack!
                 </span>
-              </button>
+
+                <h3 className="success-item text-4xl md:text-5xl font-bold">
+                    Din offertförfrågan
+                    <span className="block text-emerald-500">är skickad.</span>
+                </h3>
+
+                <p className="success-item text-[#ebebeb] text-lg leading-relaxed">
+                    Vi har tagit emot din förfrågan och återkommer så snart som möjligt.
+                    Har du kompletterande information är du alltid välkommen att kontakta oss.
+                </p>
+
+                <div className="success-item pt-8 flex justify-center">
+                    <button
+                    onClick={resetWizard}
+                    className="
+                        success-btn
+                        group relative inline-flex items-center gap-3 
+                        rounded-full border border-white/30 px-8 py-3
+                        uppercase text-xs tracking-[0.25em]
+                        transition-all duration-500 hover:border-emerald-500
+                    "
+                    >
+                    <span>Skicka ny förfrågan</span>
+                    <span className="group-hover:translate-x-1 transition-transform">
+                        →
+                    </span>
+                    </button>
+                </div>
             </div>
-          </div>
         </div>
       ) : (
         <div className="max-w-3xl mx-auto">
@@ -205,7 +271,7 @@ const OfferWizard = () => {
           )}
 
           {/* CONTENT */}
-          <div className="space-y-12">
+          <div ref={stepWrapRef} key={step} className="space-y-12">
             {/* STEP 1 */}
             {step === 1 && (
               <div className="space-y-8">
