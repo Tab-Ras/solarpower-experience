@@ -13,6 +13,7 @@ import BenifitsSection from "../components/BenifitsSection";
 // import ReferencesSection from "../components/ReferencesSection";
 // import ContactSection from "../components/ContactSection";
 import OfferWizard from "../components/OfferWizard";
+import FAQSection from "../components/FAQSection";
 import Footer from "../components/Footer";
 
 // gsap.registerPlugin(ScrollTrigger);
@@ -84,6 +85,7 @@ const Home = () => {
       {/* <ReferencesSection /> */}
       {/* <ContactSection /> */}
       <OfferWizard />
+      <FAQSection />
       <Footer />
       <LandingReveal />
     </>

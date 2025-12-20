@@ -1,14 +1,17 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
-import { HiArrowNarrowRight } from "react-icons/hi";
+
+import PrivacyModal from "./PrivacyModal";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+
   const year = new Date().getFullYear();
   const footerRef = useRef(null);
 
@@ -123,8 +126,9 @@ const Footer = () => {
             </div>
 
             <div className="space-y-1 text-xs text-gray-500 pt-4">
-              <p>Centrerat Montage <br/> Östgöta AB</p>
-            </div>
+              <p>Centrerat Montage Östgöta AB</p>
+              <p>Org.nr: 559490-0838</p>
+            </div>          
           </div>
 
           {/* CONNECT */}
@@ -156,6 +160,34 @@ const Footer = () => {
               </a>
             </div>
           </div>
+          {/* PRIVACY */}
+          <div className="footer-column space-y-8">
+            <div className="space-y-2 text-sm md:text-base grid">
+              <button
+                onClick={() => {
+                  if (window.lenis) {
+                    window.lenis.scrollTo('#faq', {
+                      duration: 1.2,
+                      easing: (t) => 1 - Math.pow(1 - t, 3),
+                    })
+                  } else {
+                    document
+                      .getElementById('faq')
+                      ?.scrollIntoView({ behavior: 'smooth' })
+                  }
+                }}
+                className="text-xs text-gray-500 hover:text-emerald-400"
+                >
+                Vanliga frågor
+              </button>
+              <button
+                onClick={() => setIsPrivacyOpen(true)}
+                className="text-xs text-gray-500 hover:text-emerald-400"
+                >
+                Integritetspolicy
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -184,6 +216,10 @@ const Footer = () => {
           </a>
         </div>
       </div>
+      <PrivacyModal
+        isOpen={isPrivacyOpen}
+        onClose={() => setIsPrivacyOpen(false)}
+      />
     </footer>
   );
 };

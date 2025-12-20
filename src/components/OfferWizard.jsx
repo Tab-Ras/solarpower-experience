@@ -1,9 +1,10 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState, useMemo } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-import { useMemo, useState } from "react";
 import { HiArrowRight, HiArrowLeft } from "react-icons/hi";
+
+import PrivacyModal from "./PrivacyModal";
 
 const INITIAL_FORM_STATE = {
   serviceType: "",
@@ -23,6 +24,8 @@ const isEmail = (value) =>
 const OfferWizard = () => {
   const stepWrapRef = useRef(null);
   const successRef = useRef(null);
+
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
 
   const [step, setStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -455,6 +458,17 @@ const OfferWizard = () => {
                   )}
                 </div>
 
+                <p className="text-xs text-gray-400 leading-relaxed">
+                  Genom att skicka förfrågan godkänner du att Centrerat Montage behandlar
+                  dina personuppgifter enligt vår{" "}
+                  <button
+                    type="button"
+                    onClick={() => setIsPrivacyOpen(true)}
+                    className="underline hover:text-emerald-400"
+                  >
+                    integritetspolicy
+                  </button>.
+                </p>
                 <div className="flex justify-end pt-8">
                   <button
                     type="submit"
@@ -569,6 +583,10 @@ const OfferWizard = () => {
           </p>
         </div>
       )}
+      <PrivacyModal
+        isOpen={isPrivacyOpen}
+        onClose={() => setIsPrivacyOpen(false)}
+      />
     </section>
   );
 };
